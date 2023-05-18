@@ -15,7 +15,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+    "src/**/*.{js,jsx,ts,tsx}": "lint"
   },
   "dependencies": {
     "expo": "~48.0.15",
