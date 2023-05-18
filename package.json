@@ -15,7 +15,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "lint"
+    "src/**/*.{js,jsx,ts,tsx}": "yarn lint"
   },
   "dependencies": {
     "expo": "~48.0.15",
