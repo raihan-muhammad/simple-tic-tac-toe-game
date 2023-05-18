@@ -11,11 +11,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn tsc && yarn lint-staged"
+      "pre-commit": "yarn tsc && lint-staged"
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "lint"
+    "src/**/*.{js,jsx,ts,tsx}": "yarn lint"
   },
   "dependencies": {
     "expo": "~48.0.15",
