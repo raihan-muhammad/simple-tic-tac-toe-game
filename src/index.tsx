@@ -1,32 +1,12 @@
-import { StyleSheet, View } from "react-native";
-import {
-  useFonts,
-  DeliusUnicase_400Regular,
-  DeliusUnicase_700Bold,
-} from "@expo-google-fonts/delius-unicase";
-import { Text } from "components";
-import AppLoading from "expo-app-loading";
-export default function App() {
-  const [fontLoaded] = useFonts({
-    DeliusUnicase_400Regular,
-    DeliusUnicase_700Bold,
-  });
-  if (!fontLoaded) return <AppLoading />;
-  console.log(fontLoaded);
+import { StyleSheet } from "react-native";
+import { AppBootstrap } from "components";
+import { ReactElement } from "react";
+import Navigator from "config/Navigator";
+
+export default function App(): ReactElement {
   return (
-    <View style={styles.container}>
-      <Text onPress={() => alert("Ok!")} style={{ fontSize: 25 }} weight="bold">
-        Shafaa cantik 🤍
-      </Text>
-    </View>
+    <AppBootstrap>
+      <Navigator />
+    </AppBootstrap>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
