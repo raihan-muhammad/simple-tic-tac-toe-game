@@ -1,5 +1,5 @@
 import { View, ScrollView, Image } from "react-native";
-import styles from "./home.styles";
+import styles from "./Home.styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackNavigatorParams } from "config/Navigator";
 import { Background, Button } from "components";

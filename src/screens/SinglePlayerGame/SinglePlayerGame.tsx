@@ -1,11 +1,15 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import styles from "./SinglePlayerGame.styles";
 import { Background, Board } from "components";
-// import { printFormattedBoard } from "utils/board";
+import { printFormattedBoard, BoardState, isEmpty, isFull, availableMoves } from "utils";
 import { ReactElement } from "react";
 
 export default function Game(): ReactElement {
-  // printFormattedBoard(b);
+  const b: BoardState = [null, null, null, null, null, null, null, null, null]
+  printFormattedBoard(b);
+  console.log(isEmpty(b));
+  console.log(isFull(b));
+  console.log(availableMoves(b))
 
   return (
     <Background>
@@ -13,7 +17,7 @@ export default function Game(): ReactElement {
         <Board
           onPressCell={(index) => alert(index)}
           size={300}
-          state={["x", "o", null, "x", "o", "o", "x", "o", "x"]}
+          state={b}
         />
       </View>
     </Background>

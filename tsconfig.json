@@ -7,7 +7,7 @@
       "screens": ["src/screens"],
       "components": ["src/components"],
       "config/*": ["src/config/*"],
-      "utils/*": ["src/utils/*"],
+      "utils": ["src/utils"],
       "context/*": ["src/context/*"],
       "assets/*": ["assets/*"]
     }
