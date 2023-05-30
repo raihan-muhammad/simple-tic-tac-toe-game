@@ -1,15 +1,19 @@
 import { View } from "react-native";
 import styles from "./SinglePlayerGame.styles";
 import { Background, Board } from "components";
-import { printFormattedBoard, BoardState, isEmpty, isFull, availableMoves } from "utils";
+import { printFormattedBoard, BoardState, isEmpty, isFull, availableMoves, isTerminal } from "utils";
 import { ReactElement } from "react";
 
 export default function Game(): ReactElement {
-  const b: BoardState = [null, null, null, null, null, null, null, null, null]
+  const b: BoardState = [
+    "x", "o", "x",
+    "x", "o", "o", 
+    "o", "o", "x"]
   printFormattedBoard(b);
   console.log(isEmpty(b));
   console.log(isFull(b));
   console.log(availableMoves(b))
+  console.log(isTerminal(b));
 
   return (
     <Background>
