@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import { AppBootstrap } from "components";
 import { ReactElement } from "react";
 import Navigator from "config/Navigator";

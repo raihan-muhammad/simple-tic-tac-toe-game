@@ -14,10 +14,15 @@ export default function Home({ navigation }: HomeProps) {
       <ScrollView contentContainerStyle={styles.container}>
         <Image style={styles.logo} source={require("assets/logo.png")} />
         <View>
-          <Button title="Shafaa Cantik! 🤍" onPress={() => alert("yoi!")} />
+          <Button
+            title="Shafaa Cantik! 🤍"
+            onPress={() =>
+              navigation.navigate("SinglePlayerGame", { GameId: "aa1" })
+            }
+          />
           <Button title="Multiplayer" onPress={() => alert("yoi!")} />
           <Button title="Login" onPress={() => alert("yoi!")} />
-          <Button title="Setting" onPress={() => alert("yoi!")} />
+          <Button title="Setting " onPress={() => alert("yoi!")} />
         </View>
       </ScrollView>
     </Background>
