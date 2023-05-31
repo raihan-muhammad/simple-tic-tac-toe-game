@@ -2,26 +2,30 @@ import { View } from "react-native";
 import styles from "./SinglePlayerGame.styles";
 import { Background, Board } from "components";
 import { printFormattedBoard, BoardState, isEmpty, isFull, availableMoves, isTerminal } from "utils";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 
 export default function Game(): ReactElement {
-  const b: BoardState = [
-    "x", "o", "x",
-    "x", "o", "o", 
-    "o", "o", "x"]
-  printFormattedBoard(b);
-  console.log(isEmpty(b));
-  console.log(isFull(b));
-  console.log(availableMoves(b))
-  console.log(isTerminal(b));
+  const [state, setState] = useState<BoardState>([
+    null, null, null,
+    null, null, null,
+    null, null, null,
+  ]);
+  
+  const handleOnPressCell = (cell: number): void => {
+    const stateCopy: BoardState = [...state];
+    if(stateCopy[cell] || isTerminal(stateCopy)) return;
+    stateCopy[cell] = "x";
+    setState(stateCopy)
+  }
 
   return (
     <Background>
       <View style={styles.container}>
         <Board
-          onPressCell={(index) => alert(index)}
+          disabled={Boolean(isTerminal(state))}
+          onPressCell={(cell) => handleOnPressCell(cell)}
           size={300}
-          state={b}
+          state={state}
         />
       </View>
     </Background>
