@@ -1,15 +1,17 @@
 import { View } from "react-native";
 import styles from "./SinglePlayerGame.styles";
 import { Background, Board } from "components";
-import { printFormattedBoard, BoardState, isEmpty, isFull, availableMoves, isTerminal } from "utils";
+import {  BoardState, getBestMove, isTerminal } from "utils";
 import { ReactElement, useState } from "react";
 
 export default function Game(): ReactElement {
   const [state, setState] = useState<BoardState>([
-    null, null, null,
-    null, null, null,
-    null, null, null,
+    null, "x", null,
+    "o", null, "x",
+    "o", "o", "x",
   ]);
+
+  console.log(getBestMove(state, true))
   
   const handleOnPressCell = (cell: number): void => {
     const stateCopy: BoardState = [...state];
@@ -19,6 +21,7 @@ export default function Game(): ReactElement {
   }
 
   return (
+    // gshg
     <Background>
       <View style={styles.container}>
         <Board
