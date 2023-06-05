@@ -1,9 +1,11 @@
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import styles from "./SinglePlayerGame.styles";
 import { Background, Board } from "components";
 import { BoardState, getBestMove, isEmpty, isTerminal, Cell } from "utils";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useSounds } from "hooks";
+
+const screenWidth = Dimensions.get("screen").width;
 
 export default function Game(): ReactElement {
   const [state, setState] = useState<BoardState>([
@@ -82,7 +84,7 @@ export default function Game(): ReactElement {
         <Board
           disabled={Boolean(isTerminal(state)) || turn !== "HUMAN"}
           onPressCell={(cell) => handleOnPressCell(cell)}
-          size={300}
+          size={screenWidth - 60}
           state={state}
           gameResult={result}
         />
