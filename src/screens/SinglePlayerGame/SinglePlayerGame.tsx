@@ -1,6 +1,6 @@
 import { View, Dimensions } from "react-native";
 import styles from "./SinglePlayerGame.styles";
-import { Background, Board } from "components";
+import { Background, Board, Text, Button } from "components";
 import { BoardState, getBestMove, isEmpty, isTerminal, Cell } from "utils";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useSounds } from "hooks";
@@ -81,6 +81,25 @@ export default function Game(): ReactElement {
   return (
     <Background>
       <View style={styles.container}>
+        <View>
+          <Text style={styles.difficulty}>Difficulty: Hard</Text>
+          <View style={styles.results}>
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultTitle}>Wins</Text>
+              <Text style={styles.resultCount}>0</Text>
+            </View>
+
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultTitle}>Draws</Text>
+              <Text style={styles.resultCount}>0</Text>
+            </View>
+
+            <View style={styles.resultsBox}>
+              <Text style={styles.resultTitle}>Losses</Text>
+              <Text style={styles.resultCount}>0</Text>
+            </View>
+          </View>
+        </View>
         <Board
           disabled={Boolean(isTerminal(state)) || turn !== "HUMAN"}
           onPressCell={(cell) => handleOnPressCell(cell)}
@@ -88,6 +107,10 @@ export default function Game(): ReactElement {
           state={state}
           gameResult={result}
         />
+        <View style={styles.modal}>
+          <Text style={styles.modalText}>You Won!</Text>
+          <Button title="Play Again"/>
+        </View>
       </View>
     </Background>
   );
