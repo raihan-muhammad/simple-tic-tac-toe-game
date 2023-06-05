@@ -22,7 +22,7 @@ export default function Home({ navigation }: HomeProps) {
           />
           <Button title="Multiplayer" onPress={() => alert("yoi!")} />
           <Button title="Login" onPress={() => alert("yoi!")} />
-          <Button title="Setting " onPress={() => alert("yoi!")} />
+          <Button onPress={() => navigation.navigate("Settings")} title="Setting" />
         </View>
       </ScrollView>
     </Background>
