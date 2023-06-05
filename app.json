@@ -11,6 +11,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "expo": {
+      "plugins": [
+        [
+          "expo-av",
+          {
+            "microphonePermission": "Allow KEPO APP to access your microphone."
+          }
+        ]
+      ]
+    },
     "assetBundlePatterns": [
       "**/*"
     ],

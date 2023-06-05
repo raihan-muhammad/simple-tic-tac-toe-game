@@ -15,7 +15,7 @@ export default function Home({ navigation }: HomeProps) {
         <Image style={styles.logo} source={require("assets/logo.png")} />
         <View>
           <Button
-            title="Shafaa Cantik! 🤍"
+            title="Single Player"
             onPress={() =>
               navigation.navigate("SinglePlayerGame", { GameId: "aa1" })
             }

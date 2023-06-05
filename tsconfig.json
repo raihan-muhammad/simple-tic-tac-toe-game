@@ -6,6 +6,7 @@
     "paths": {
       "screens": ["src/screens"],
       "components": ["src/components"],
+      "hooks": ["src/hooks"],
       "config/*": ["src/config/*"],
       "utils": ["src/utils"],
       "context/*": ["src/context/*"],
