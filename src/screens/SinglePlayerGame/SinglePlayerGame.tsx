@@ -84,6 +84,7 @@ export default function Game(): ReactElement {
           onPressCell={(cell) => handleOnPressCell(cell)}
           size={300}
           state={state}
+          gameResult={result}
         />
       </View>
     </Background>
