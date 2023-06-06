@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
         marginHorizontal: -5
     },
     choice: {
-        backgroundColor: "#bbb",
         padding: 10,
         margin: 5
     },

@@ -2,17 +2,46 @@
 import { ScrollView, Switch, TouchableOpacity, View } from "react-native";
 import { Text } from "components";
 import styles from "./Setting.styles";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-community/async-storage";
 
+const difficulties = {
+    "1": "Beginner",
+    "3": "Intermediate",
+    "4": "Hard",
+    "-1": "Impossible"
+}
 
-export default function Settings(): ReactElement {
-    const [state, setState] = useState<boolean>(true)
-    const difficulties = {
-        "1": "Beginner",
-        "3": "Intermediate",
-        "4": "Hard",
-        "-1": "Impossible"
+type SettingsType = {
+    difficulty: keyof typeof difficulties;
+    sounds: boolean;
+    haptics: boolean;
+}
+
+const defaultSettings: SettingsType = {
+    difficulty: "-1",
+    haptics: true,
+    sounds: true
+}
+
+export default function Settings(): ReactElement | null {
+    const [settings, setSettings] = useState<SettingsType | null>(null)
+
+    const loadSettings = async () => {
+        try {
+            const settings = await AsyncStorage.getItem("settings")
+            settings !== null ? setSettings(JSON.parse(settings)) : setSettings(defaultSettings)
+        } catch(err){
+            setSettings(defaultSettings)
+        }
     }
+
+    useEffect(() => {
+        loadSettings();
+    }, [])
+
+    if(!settings) return null;
+    
     return (
         <ScrollView style={styles.container}>
             <View style={styles.field}>
@@ -20,7 +49,9 @@ export default function Settings(): ReactElement {
                 <View style={styles.choices}>
                     {Object.keys(difficulties).map((level) => {
                         return (
-                            <TouchableOpacity style={styles.choice} key={level} >
+                            <TouchableOpacity style={[styles.choice, {
+                                backgroundColor: settings.difficulty === level ? "#1B9C85" : "#bbb"
+                            }]} key={level} >
                                 <Text style={styles.choiceText}>{difficulties[level as keyof typeof difficulties]}</Text>
                             </TouchableOpacity>
                         )
@@ -36,8 +67,8 @@ export default function Settings(): ReactElement {
                     }}
                     thumbColor="#fff"
                     ios_backgroundColor="#1B9C85"
-                    value={state} 
-                    onValueChange={() => setState(!state)} 
+                    value={settings.sounds} 
+                    // onValueChange={() => setSettings(!settings.sounds)} 
                 />
             </View>
             <View style={[styles.field, styles.switchField]}>
@@ -48,8 +79,8 @@ export default function Settings(): ReactElement {
                     }}
                     thumbColor="#fff"
                     ios_backgroundColor="#1B9C85"
-                    value={state} 
-                    onValueChange={() => setState(!state)} 
+                    value={settings.haptics} 
+                    // onValueChange={() => setSettings(!settings.haptics)} 
                 />
             </View>
         </ScrollView>

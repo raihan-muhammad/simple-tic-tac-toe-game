@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/delius-unicase": "^0.2.3",
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@react-navigation/stack": "^6.3.16",
