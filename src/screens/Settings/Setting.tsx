@@ -1,5 +1,5 @@
 
-import { ScrollView, Switch, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, Switch, TouchableOpacity, View } from "react-native";
 import { Text } from "components";
 import styles from "./Setting.styles";
 import { ReactElement, useEffect, useState } from "react";
@@ -20,12 +20,24 @@ type SettingsType = {
 
 const defaultSettings: SettingsType = {
     difficulty: "-1",
+    sounds: true,
     haptics: true,
-    sounds: true
 }
 
 export default function Settings(): ReactElement | null {
     const [settings, setSettings] = useState<SettingsType | null>(null)
+
+    const saveSettings = async<T extends keyof SettingsType> (setting: T, value: SettingsType[T])=> {
+        try {
+            const oldSettings = settings ? settings : defaultSettings;
+            const newSettings = {...oldSettings, [setting]: value}
+            const jsonSettings = JSON.stringify(newSettings)
+            await AsyncStorage.setItem("settings", jsonSettings);
+            setSettings(newSettings)
+        } catch(err){
+            Alert.alert("Error!", "An error has occurred!")
+        }
+    }
 
     const loadSettings = async () => {
         try {
@@ -49,10 +61,16 @@ export default function Settings(): ReactElement | null {
                 <View style={styles.choices}>
                     {Object.keys(difficulties).map((level) => {
                         return (
-                            <TouchableOpacity style={[styles.choice, {
-                                backgroundColor: settings.difficulty === level ? "#1B9C85" : "#bbb"
-                            }]} key={level} >
-                                <Text style={styles.choiceText}>{difficulties[level as keyof typeof difficulties]}</Text>
+                            <TouchableOpacity 
+                                onPress={() => {
+                                    saveSettings("difficulty", level as keyof typeof difficulties)
+                                }}
+                                style={[styles.choice, {
+                                    backgroundColor: settings.difficulty === level ? "#1B9C85" : "#bbb"
+                                }]} 
+                                key={level} 
+                            >
+                                    <Text style={styles.choiceText}>{difficulties[level as keyof typeof difficulties]}</Text>
                             </TouchableOpacity>
                         )
                     })}
@@ -68,7 +86,7 @@ export default function Settings(): ReactElement | null {
                     thumbColor="#fff"
                     ios_backgroundColor="#1B9C85"
                     value={settings.sounds} 
-                    // onValueChange={() => setSettings(!settings.sounds)} 
+                    onValueChange={() => saveSettings("sounds", !settings.sounds)} 
                 />
             </View>
             <View style={[styles.field, styles.switchField]}>
@@ -80,7 +98,7 @@ export default function Settings(): ReactElement | null {
                     thumbColor="#fff"
                     ios_backgroundColor="#1B9C85"
                     value={settings.haptics} 
-                    // onValueChange={() => setSettings(!settings.haptics)} 
+                    onValueChange={() => saveSettings("haptics", !settings.haptics)} 
                 />
             </View>
         </ScrollView>
