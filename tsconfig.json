@@ -9,7 +9,7 @@
       "hooks": ["src/hooks"],
       "config/*": ["src/config/*"],
       "utils": ["src/utils"],
-      "context/*": ["src/context/*"],
+      "contexts/*": ["src/contexts/*"],
       "assets/*": ["assets/*"]
     }
   }

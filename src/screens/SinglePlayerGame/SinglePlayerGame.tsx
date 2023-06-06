@@ -4,7 +4,7 @@ import { Background, Board, Text, Button } from "components";
 import { BoardState, getBestMove, isEmpty, isTerminal, Cell } from "utils";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useSounds } from "hooks";
-
+import { difficulties, useSettings } from "contexts/SettingContext";
 const screenWidth = Dimensions.get("screen").width;
 
 export default function Game(): ReactElement {
@@ -23,6 +23,7 @@ export default function Game(): ReactElement {
   
   const result = isTerminal(state)
   const playSound = useSounds();
+  const {settings } = useSettings();
 
   const insertCell = (cell: number, symbol: 'x' | 'o'): void => {
     const stateCopy: BoardState = [...state];
@@ -71,7 +72,7 @@ export default function Game(): ReactElement {
       }
       if(winner === "DRAW") {
         playSound("draw")
-        setGamesCount({...gamesCount, draws: gamesCount.draws + 1})
+        setGamesCount({...gamesCount, draws : gamesCount.draws + 1})
       }
     } else {
       if(turn === "BOT"){
@@ -82,7 +83,7 @@ export default function Game(): ReactElement {
           setIsHumanMaxizing(false);
           setTurn("HUMAN")
         } else {
-          const best = getBestMove(state, !isHumanMaxizing, 0, 1);
+          const best = getBestMove(state, !isHumanMaxizing, 0, parseInt(settings ? settings?.difficulty : "-1"));
           insertCell(best, isHumanMaxizing ? "o": "x")
           setTurn("HUMAN")
         }
@@ -96,7 +97,7 @@ export default function Game(): ReactElement {
     <Background>
       <View style={styles.container}>
         <View>
-          <Text style={styles.difficulty}>Difficulty: Hard</Text>
+          <Text style={styles.difficulty}>Difficulty: {settings ? difficulties[settings.difficulty] : "Impossible"}</Text>
           <View style={styles.results}>
             <View style={styles.resultsBox}>
               <Text style={styles.resultTitle}>Wins</Text>
