@@ -3,12 +3,13 @@ import styles from "./Home.styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackNavigatorParams } from "config/Navigator";
 import { Background, Button } from "components";
+import { ReactElement } from "react";
 
 type HomeProps = {
   navigation: StackNavigationProp<StackNavigatorParams, "Home">;
 };
 
-export default function Home({ navigation }: HomeProps) {
+export default function Home({ navigation }: HomeProps): ReactElement {
   return (
     <Background>
       <ScrollView contentContainerStyle={styles.container}>
@@ -21,7 +22,7 @@ export default function Home({ navigation }: HomeProps) {
             }
           />
           <Button title="Multiplayer" onPress={() => alert("yoi!")} />
-          <Button title="Login" onPress={() => alert("yoi!")} />
+          <Button title="Login" onPress={() => navigation.navigate("Login",)} />
           <Button onPress={() => navigation.navigate("Settings")} title="Setting" />
         </View>
       </ScrollView>
