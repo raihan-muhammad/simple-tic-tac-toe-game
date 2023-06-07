@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-simpletictactoegame-dev-170845-authRole",
+      "UnauthRoleArn": "arn:aws:iam::134257624621:role/amplify-simpletictactoegame-dev-170845-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::134257624621:role/amplify-simpletictactoegame-dev-170845-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-simpletictactoegame-dev-170845-deployment",
+      "UnauthRoleName": "amplify-simpletictactoegame-dev-170845-unauthRole",
+      "StackName": "amplify-simpletictactoegame-dev-170845",
+      "StackId": "arn:aws:cloudformation:us-west-2:134257624621:stack/amplify-simpletictactoegame-dev-170845/4da55200-051b-11ee-97d3-02b3ea44d417",
+      "AmplifyAppId": "d3jd99im6xudvr"
+    },
+    "categories": {
+      "auth": {
+        "simpletictactoegame7f24e856": {}
+      },
+      "api": {
+        "simpletictactoegame": {}
+      }
+    }
+  }
+}

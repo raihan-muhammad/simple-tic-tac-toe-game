@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "simpletictactoegame",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authsimpletictactoegame7f24e856"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2023-06-14T11:48:07.954Z",
+        "keyDescription": " test"
+      },
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
+  }
+}
