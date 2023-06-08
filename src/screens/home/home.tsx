@@ -1,10 +1,11 @@
-import { View, ScrollView, Image } from "react-native";
+import { View, ScrollView, Image, Alert } from "react-native";
 import styles from "./Home.styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackNavigatorParams } from "config/Navigator";
 import { Background, Button, Text } from "components";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { useAuth } from "contexts/AuthContext"
+import { Auth } from "aws-amplify";
 
 type HomeProps = {
   navigation: StackNavigationProp<StackNavigatorParams, "Home">;
@@ -12,7 +13,8 @@ type HomeProps = {
 
 export default function Home({ navigation }: HomeProps): ReactElement {
   const {user} = useAuth();
-  console.log(user);
+  const [signingOut, setSingingOut] = useState<boolean>(false);
+
   return (
     <Background>
       <ScrollView contentContainerStyle={styles.container}>
@@ -25,12 +27,19 @@ export default function Home({ navigation }: HomeProps): ReactElement {
             }
           />
           <Button title="Multiplayer" onPress={() => alert("yoi!")} />
-          <Button title={user? "Logout": "Login"} onPress={() => {
-            if(user){
-              console.log(user)
-            } else {
-              navigation.navigate("Login")} 
-            }}
+          <Button 
+            title={user? "Logout": "Login"} 
+            loading={signingOut}
+            onPress={async() => {
+              if(user){
+                try {
+                  await Auth.signOut();
+                } catch(err){
+                  Alert.alert("Error!", "Error signing out!");
+                }
+              } else {
+                navigation.navigate("Login")} 
+              }}
             />
           <Button onPress={() => navigation.navigate("Settings")} title="Setting" />
           {user && <Text weight="bold" style={styles.textLogin}>Logged in as {user.username} </Text>}

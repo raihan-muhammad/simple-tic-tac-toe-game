@@ -1,10 +1,16 @@
 import { ReactElement, useRef, useState } from "react";
 import { ScrollView, TextInput as NativeTextInput, Alert } from "react-native";
 import { TextInput, Button } from "components"
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StackNavigatorParams } from "config/Navigator";
 import { Auth } from "aws-amplify";
 import styles from "./Login.styles";
 
-export default function Login(): ReactElement {
+type LoginProps = {
+    navigation: StackNavigationProp<StackNavigatorParams, "Login">;
+}
+
+export default function Login({ navigation }: LoginProps): ReactElement {
     const passwordRef = useRef<NativeTextInput | null>(null);
     const [loading, setLoading] = useState(false)
     const [form, setForm] = useState({
@@ -36,8 +42,8 @@ export default function Login(): ReactElement {
         setLoading(true)
         try {
             const { username, password} = form;
-            const res = await Auth.signIn(username, password);
-            console.log(res);
+            await Auth.signIn(username, password);
+            navigation.navigate("Home")
         } catch(err){
             if(err instanceof Error) Alert.alert("Error!", err.message || "An error has occurred!")
         }
