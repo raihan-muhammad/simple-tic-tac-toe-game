@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
     height: 150,
     resizeMode: "contain",
   },
+  textLogin: {
+    textAlign: "center",
+    fontSize: 16,
+    marginTop: 10
+  }
 });
 
 export default styles;
