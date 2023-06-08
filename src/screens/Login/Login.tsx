@@ -22,22 +22,6 @@ export default function Login({ navigation }: LoginProps): ReactElement {
         setForm({ ...form, [key]: value})
     }
 
-    // const signup = async () => {
-    //     try {
-    //         const res = await Auth.signUp({
-    //             username: "test",
-    //             password: "testtest",
-    //             attributes: {
-    //                 email: "test@test.com",
-    //                 name: "test test"
-    //             }
-    //         })
-    //         console.log(res)
-    //     } catch(err) {
-    //         console.log(err);
-    //     }
-    // }
-
     const Login = async () => {
         setLoading(true)
         try {
