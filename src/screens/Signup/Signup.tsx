@@ -1,16 +1,16 @@
 import { ReactElement, useRef, useState } from "react";
-import { ScrollView, TextInput as NativeTextInput, Alert, TouchableOpacity } from "react-native";
-import { TextInput, Button, Text } from "components"
+import { ScrollView, TextInput as NativeTextInput, Alert } from "react-native";
+import { TextInput, Button } from "components"
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackNavigatorParams } from "config/Navigator";
 import { Auth } from "aws-amplify";
-import styles from "./Login.styles";
+import styles from "./Signup.styles";
 
-type LoginProps = {
-    navigation: StackNavigationProp<StackNavigatorParams, "Login">;
+type SignUpProps = {
+    navigation: StackNavigationProp<StackNavigatorParams, "SignUp">;
 }
 
-export default function Login({ navigation }: LoginProps): ReactElement {
+export default function SignUp({ navigation }: SignUpProps): ReactElement {
     const passwordRef = useRef<NativeTextInput | null>(null);
     const [loading, setLoading] = useState(false)
     const [form, setForm] = useState({
@@ -38,7 +38,7 @@ export default function Login({ navigation }: LoginProps): ReactElement {
     //     }
     // }
 
-    const Login = async () => {
+    const SignUp = async () => {
         setLoading(true)
         try {
             const { username, password} = form;
@@ -70,18 +70,11 @@ export default function Login({ navigation }: LoginProps): ReactElement {
 
             <Button 
                 loading={loading} 
-                title="Login" 
-                onPress={Login}
+                title="SignUp" 
+                onPress={SignUp}
                 style={{ backgroundColor: "#1B9C85" }} 
                 textColor="white"
             />
-            <TouchableOpacity
-                onPress={() => {
-                    navigation.navigate("SignUp");
-                }}
-            >
-                <Text style={styles.RegisterText}>Don't have an account? Sign Up</Text>
-            </TouchableOpacity>
         </ScrollView>
     )
 }

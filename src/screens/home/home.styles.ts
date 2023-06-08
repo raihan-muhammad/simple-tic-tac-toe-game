@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   textLogin: {
     textAlign: "center",
     fontSize: 16,
-    marginTop: 10
+    marginTop: 10,
+    color: "#fff "
   }
 });
 
