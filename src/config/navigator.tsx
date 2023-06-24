@@ -8,7 +8,7 @@ export type StackNavigatorParams = {
   SinglePlayerGame: { GameId: string };
   Settings: undefined,
   Login: undefined,
-  SignUp: undefined
+  SignUp: {username: string} | undefined;
 };
 
 const Stack = createStackNavigator<StackNavigatorParams>();
