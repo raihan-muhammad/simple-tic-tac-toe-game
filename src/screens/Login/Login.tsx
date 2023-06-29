@@ -69,6 +69,12 @@ export default function Login({ navigation }: LoginProps): ReactElement {
             >
                 <Text style={styles.RegisterText}>Don't have an account? Sign Up</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+                style={{  }}
+                onPress={() => navigation.navigate("ForgotPassword")}
+            >
+                <Text style={styles.ForgotText}>Forgot Password</Text>
+            </TouchableOpacity>
         </ScrollView>
     )
 }

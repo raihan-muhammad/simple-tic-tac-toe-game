@@ -7,8 +7,15 @@ const styles = StyleSheet.create({
     },
     RegisterText: {
         textAlign: "center",
+        marginVertical: 15,
         marginTop: 25,
-    }
+        textDecorationLine: "underline"
+    },
+    ForgotText: {
+        textAlign: "center",
+        marginVertical: 15,
+        textDecorationLine: "underline"
+    },
 })
 
 export default styles;
