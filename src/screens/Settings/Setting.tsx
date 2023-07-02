@@ -4,8 +4,16 @@ import { Text } from "components";
 import styles from "./Setting.styles";
 import { ReactElement } from "react";
 import {useSettings, difficulties} from "contexts/SettingContext";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StackNavigatorParams } from "config/Navigator";
 
-export default function Settings(): ReactElement | null {
+type SettingNavigationProp = StackNavigationProp<StackNavigatorParams, "ChangePassword">;
+
+type SettingProp = {
+    navigation: SettingNavigationProp
+}
+
+export default function Settings({ navigation }: SettingProp): ReactElement | null {
     const {settings, saveSettings} = useSettings();
 
     if(!settings) return null;
@@ -56,6 +64,11 @@ export default function Settings(): ReactElement | null {
                     value={settings.haptics} 
                     onValueChange={() => saveSettings("haptics", !settings.haptics)} 
                 />
+            </View>
+            <View style={[styles.field, styles.changePassword]}>
+                <TouchableOpacity onPress={() => navigation.navigate("ChangePassword")}>
+                    <Text style={[styles.label, styles.textChangePassword]}>Change Password</Text>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
